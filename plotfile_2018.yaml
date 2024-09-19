@@ -1,0 +1,33 @@
+lumi: 59.74
+xlabel: "HOTVR jet mass (GeV)"
+savedir: "HOTVRtagger_TopSF_2018_results"
+categories:
+  topmatched:
+    color: "#e42536"
+    propername: "Top-matched"
+  wmatched:
+    color: "#f89c20"
+    propername: "W-matched"
+  nonmatched:
+    color: "#5790fc"
+    propername: "Non-matched"
+  other:
+    color: "#964a8b"
+    propername: "Other"
+ptranges:
+  - name: 300to400
+    propername: "$p_T \\in [300, 400]$"
+    prefitfile: HOTVRtagger_TopSF_2018/300to400.root
+    postfitfile: HOTVRtagger_TopSF_2018_results/fitDiagnostics300to400.root
+  - name: 400to480
+    propername: "$p_T \\in [400, 480]$"
+    prefitfile: HOTVRtagger_TopSF_2018/400to480.root
+    postfitfile: HOTVRtagger_TopSF_2018_results/fitDiagnostics400to480.root
+  - name: 480to600
+    propername: "$p_T \\in [480, 600]$"
+    prefitfile: HOTVRtagger_TopSF_2018/480to600.root
+    postfitfile: HOTVRtagger_TopSF_2018_results/fitDiagnostics480to600.root
+  - name: 600to1200
+    propername: "$p_T \\in [600, 1200]$"
+    prefitfile: HOTVRtagger_TopSF_2018/600to1200.root
+    postfitfile: HOTVRtagger_TopSF_2018_results/fitDiagnostics600to1200.root'
