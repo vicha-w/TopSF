@@ -7,6 +7,7 @@ A _better_ framework for scale factor measurement, designed with flexibility in 
 - Supports _any_ ROOT ntuple structure. No need to conform to any hardcoded format.
 - Supports _any_ tagger that gives one discriminator value, such as cut-based, BDT, or neural networks.
 - Supports _any_ file name format, _any_ number of processes, and _any_ number of tagging categories you have.
+- Supports _any_ kind of event category definition. You are not limited to pT ranges. You can define event categories in _any_ way with _any_ number of variables.
 - _Everything_ can be defined in one YAML file for datacard creation. No more surprises hidden deep in raw code.
 - Also contains _helpful_ HiggsCombine script to give you an idea of what you can do with the output datacard.
 
@@ -32,7 +33,9 @@ The output files from this script are, per one event category,
 
 This script will also create one helpful bash script invoking `text2workspace` program, which can be used on machines with HiggsCombine set up.
 
-Normally, to save time, other frameworks may generate the intermediate 2D histogram templates (containing jet pT versus jet mass distribution) for fast datacard generation in case the user wants to adjust the jet pT range. Unfortunately this may lead to bugs since the 2D histogram may not always have the exact pT ranges encoded. To avoid this surprise, **this script will only generate 1D distribution and no intermediate 2D histogram templates**. Furthermore, to offer more flexibility in event categories which may not entirely rely on one pT variable only (such as scale factor measurements for two or more variables, where the categories do not have to follow in the grid fashion), instead of only defining pT ranges, **you can (and must) define your own event categories**. This means, for each event category, you must include all the variables needed in the rule associated with the category.
+Normally, to save time, other frameworks may generate the intermediate 2D histogram templates (containing jet pT versus jet mass distribution) for fast datacard generation in case the user wants to adjust the jet pT range. Unfortunately this may lead to bugs since the 2D histogram may not always have the exact pT ranges encoded. To avoid this surprise, **this script will only generate 1D distribution and no intermediate 2D histogram templates**. 
+
+Furthermore, to offer more flexibility in event categories which may not entirely rely on one pT variable only (such as scale factor measurements for two or more variables, where the categories do not have to follow in the grid fashion), instead of only defining pT ranges, **you can (and must) define your own event categories**. This means, for each event category, you must include all the variables needed in the rule associated with the category.
 
 The output files from this script should be used to measure scale factors using HiggsCombine. Refer to `COMBINE_README.md` file for more details.
 
@@ -52,8 +55,8 @@ The YAML input for `make_histograms.py` must contain details about your input RO
     - **One `data` key is required.** This specifies the input ROOT files for data. Another key `nominal_files` must be present in `data`, and must contain a list of input file paths.
     - Any number of processes, each as one key. Inside it must contain the keys `nominal_files` that specify the file paths for nominal event distributions, and `unc_files` that specify the file paths for event distributions for shape-based uncertainties, such as JES or JER.
 - `basecut`: Base cut to be applied to all events. **Required.**
-- `categories`: _Tagging categories_ to be added to the datacard. Each key represents a tagging category, and must contain the list of processes (under `processes` key) and further cuts for that category (under `cut` key).
-- `tagger`: Details on the designated tagger
+- `categories`: _Tagging categories_ to be added to the datacard. (This is equivalent to _processes_ in HiggsCombine.) Each key represents a tagging category, and must contain the list of processes (under `processes` key) and further cuts for that category (under `cut` key).
+- `tagger`: Details on the designated tagger.
     - `name`: Name of the tagger to be used in files
     - `varname`: Name of the discrimnator _as seen in the ntuple files_.
     - `cut`: Discriminator cut for the tagger. Passing and failing events are defined as events with discriminator values higher and lower than this cut respectively.
@@ -61,7 +64,9 @@ The YAML input for `make_histograms.py` must contain details about your input RO
     - `mass_variable`: Target variable to be populated in the distribution. Usually jet mass is used.
     - `mass_range`: Range of the target variable.
     - `mass_bins`: Number of bins in the distribution.
-    - `event_categories`: Definitions for _event categories_. Every event should be categorised into one of the event categories (provided that they are orthogonal), and then further classified into passing and failing categories based on the tagger. Each category should contain the following keys:
+    - `event_categories`: Definitions for _event categories_. Every event should be categorised into one of the event categories (provided that they are orthogonal), and then further classified into passing and failing categories based on the tagger. (This is equivalent to _bins_ in HiggsCombine.) **Required.** 
+    
+      Each category should contain the following keys:
         - `name`: Name of the event category. **The name used here will be used as output file names.**
         - `rule`: Rule of the event category. This rule will be plugged directly into `TTree.Project` method, so the rules defined here should be in the compatible ROOT format.
 - `uncertainties`: Details on uncertainties to be added into the datacard. Each key is a uncertainty name, and should contain `mode` key inside. Currently `mode` supports `lnN`, `factor`, and `file`, and has different behaviours as follows:
