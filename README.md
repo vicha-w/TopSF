@@ -83,8 +83,8 @@ The YAML input for `plot_histograms.py` has a different structure, aimed at plot
 - `categories`: _Tagging categories_ as defined in the YAML input file for `make_histograms.py`. However, each key (name of the tagging category) must contain the following sub-keys:
     - `color`: Histogram colour, used in both prefit and postfit plots
     - `propername`: Name to be shown in the legend
-- `ptranges`: _List_ of $p_T$ categories to be plotted. Must contain the following sub-keys:
-    - `name`: $p_T$ category name as defined in `pt_ranges` option in the input YAML file for `make_histograms.py`
+- `eventcats`: _List_ of event categories to be plotted. Must contain the following sub-keys:
+    - `name`: Event category name as defined in `event_categories` option in the input YAML file for `make_histograms.py`
     - `propername`: Text to be added in the legend of the plot, _not required_
     - `prefitfile`: Path to prefit file, or the input ROOT file generated from `make_histograms.py`
     - `postfitfile`: Path to postfit file, or the output ROOT file from FitDiagnostics method of Higgs Combine

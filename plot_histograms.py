@@ -254,22 +254,22 @@ def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, ar
     
     fig.savefig(filename, bbox_inches="tight")
 
-for ptrange_dict in yaml_spec["ptranges"]:
-    ptrange_name = ptrange_dict["name"]
-    if "propername" in ptrange_dict.keys(): ptrange_propername = ptrange_dict["propername"]
-    else: ptrange_propername = ptrange_name
-    prefitfile  = pyr.TFile(ptrange_dict["prefitfile"])
-    postfitfile = pyr.TFile(ptrange_dict["postfitfile"])
+for eventcat in yaml_spec["eventcats"]:
+    eventcat_name = eventcat["name"]
+    if "propername" in eventcat.keys(): ptrange_propername = eventcat["propername"]
+    else: ptrange_propername = eventcat_name
+    prefitfile  = pyr.TFile(eventcat["prefitfile"])
+    postfitfile = pyr.TFile(eventcat["postfitfile"])
     
-    hist_prefit_data_pass = prefitfile.Get(f"data_{ptrange_name}_pass")
-    hist_prefit_data_fail = prefitfile.Get(f"data_{ptrange_name}_fail")
+    hist_prefit_data_pass = prefitfile.Get(f"data_{eventcat_name}_pass")
+    hist_prefit_data_fail = prefitfile.Get(f"data_{eventcat_name}_fail")
     hist_prefit_mc_pass = {}
     hist_prefit_mc_fail = {}
     for category in yaml_spec["categories"].keys():
-        hist_prefit_mc_pass[category] = prefitfile.Get(f"{category}_{ptrange_name}_pass_nominal")
-        hist_prefit_mc_fail[category] = prefitfile.Get(f"{category}_{ptrange_name}_fail_nominal")
-    hist_prefit_mc_pass_sum = hist_prefit_mc_pass[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{ptrange_name}_pass_nominal")
-    hist_prefit_mc_fail_sum = hist_prefit_mc_fail[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{ptrange_name}_fail_nominal")
+        hist_prefit_mc_pass[category] = prefitfile.Get(f"{category}_{eventcat_name}_pass_nominal")
+        hist_prefit_mc_fail[category] = prefitfile.Get(f"{category}_{eventcat_name}_fail_nominal")
+    hist_prefit_mc_pass_sum = hist_prefit_mc_pass[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{eventcat_name}_pass_nominal")
+    hist_prefit_mc_fail_sum = hist_prefit_mc_fail[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{eventcat_name}_fail_nominal")
     hist_prefit_mc_pass_sum.Reset("ICES")
     hist_prefit_mc_fail_sum.Reset("ICES")
     for category in yaml_spec["categories"].keys():
@@ -329,31 +329,6 @@ for ptrange_dict in yaml_spec["ptranges"]:
     histbins_postfit_pass = hist_to_bins(hist_postfit_mc_pass_sum)
     histbins_postfit_fail = hist_to_bins(hist_postfit_mc_fail_sum)
     
-    #print("---")
-    #print(array_prefit_data_pass)
-    #print("err", array_prefit_data_pass_err)
-    #print(array_prefit_data_fail)
-    #print("err", array_prefit_data_fail_err)
-    #for category in yaml_spec["categories"].keys():
-    #    print(category)
-    #    print(array_postfit_mc_pass[category])
-    #    print("err", array_postfit_mc_pass_err[category])
-    #    print(array_postfit_mc_fail[category])
-    #    print("err", array_postfit_mc_fail_err[category])
-    #    print(array_postfit_mc_pass_prefit[category])
-    #    print("err", array_postfit_mc_pass_prefit_err[category])
-    #    print(array_postfit_mc_fail_prefit[category])
-    #    print("err", array_postfit_mc_fail_prefit_err[category])
-    #print(array_postfit_mc_pass_sum)
-    #print("err", array_postfit_mc_pass_sum_err)
-    #print(array_postfit_mc_fail_sum)
-    #print("err", array_postfit_mc_fail_sum_err)
-    #print(array_postfit_mc_pass_prefit_sum)
-    #print("err", array_postfit_mc_pass_prefit_sum_err)
-    #print(array_postfit_mc_fail_prefit_sum)
-    #print("err", array_postfit_mc_fail_prefit_sum_err)
-    
-    # First plot prefit
     plot_prefit(
         array_prefit_mc_pass, 
         array_prefit_mc_pass_error, 
@@ -362,7 +337,7 @@ for ptrange_dict in yaml_spec["ptranges"]:
         array_prefit_data_pass_err, 
         histbins_prefit_pass, 
         ptrange_propername + ", pass", 
-        f"{yaml_spec['savedir']}/prefit_pass_{ptrange_name}.png"
+        f"{yaml_spec['savedir']}/prefit_pass_{eventcat_name}.png"
     )
     plot_prefit(
         array_prefit_mc_fail, 
@@ -372,7 +347,7 @@ for ptrange_dict in yaml_spec["ptranges"]:
         array_prefit_data_fail_err, 
         histbins_prefit_fail, 
         ptrange_propername + ", fail", 
-        f"{yaml_spec['savedir']}/prefit_fail_{ptrange_name}.png"
+        f"{yaml_spec['savedir']}/prefit_fail_{eventcat_name}.png"
     )
     plot_postfit(
         array_postfit_mc_pass_prefit, 
@@ -387,7 +362,7 @@ for ptrange_dict in yaml_spec["ptranges"]:
         array_postfit_data_pass_err, 
         histbins_prefit_pass,
         ptrange_propername + ", pass", 
-        f"{yaml_spec['savedir']}/postfit_pass_{ptrange_name}.png"
+        f"{yaml_spec['savedir']}/postfit_pass_{eventcat_name}.png"
     )
     plot_postfit(
         array_postfit_mc_fail_prefit, 
@@ -402,5 +377,5 @@ for ptrange_dict in yaml_spec["ptranges"]:
         array_postfit_data_fail_err, 
         histbins_prefit_fail,
         ptrange_propername + ", fail", 
-        f"{yaml_spec['savedir']}/postfit_fail_{ptrange_name}.png"
+        f"{yaml_spec['savedir']}/postfit_fail_{eventcat_name}.png"
     )

@@ -14,7 +14,7 @@ categories:
   other:
     color: "#964a8b"
     propername: "Other"
-ptranges:
+eventcats:
   - name: 300to400
     propername: "$p_T \\in [300, 400]$"
     prefitfile: HOTVRtagger_TopSF_2018/300to400.root
