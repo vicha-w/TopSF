@@ -335,12 +335,21 @@ distribution:
   mass_variable: fj_1_rawmass
   mass_range: [50, 220]
   mass_bins: 17
-  pt_variable: fj_1_pt
-  pt_ranges:
-    - [300, 400]
-    - [400, 480]
-    - [480, 600]
-    - [600, 1200]
+  event_categories:
+  - name: 300to400
+    rule: "(fj_1_pt >= 300) && (fj_1_pt < 400)"
+  - name: 400to480
+    rule: "(fj_1_pt >= 400) && (fj_1_pt < 480)"
+  - name: 480to600
+    rule: "(fj_1_pt >= 480) && (fj_1_pt < 600)"
+  - name: 600to1200
+    rule: "(fj_1_pt >= 600) && (fj_1_pt < 1200)"
+  #pt_variable: fj_1_pt
+  #pt_ranges:
+  #  - [300, 400]
+  #  - [400, 480]
+  #  - [480, 600]
+  #  - [600, 1200]
 uncertainties:
   lumi:
     mode: "lnN"

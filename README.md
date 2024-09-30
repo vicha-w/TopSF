@@ -61,12 +61,19 @@ The YAML input for `make_histograms.py` must contain details about your input RO
     - `mass_variable`: Target variable to be populated in the distribution. Usually jet mass is used.
     - `mass_range`: Range of the target variable.
     - `mass_bins`: Number of bins in the distribution.
-    - `pt_variable`: Variable for pT value, used for different jet pT categories.
-    - `pt_ranges`: Ranges of pt variables for datacards to be generated. Must be a list. If an element in the list is a list with two numbers, the jet pT category will have the default name as `"{pt[0]}to{pt[1]}"`. If an element in the list is a list with three elements, the first and second number will be used as pT range, while the third _string_ will be treated as jet pT category name. **The pT range name defined here will be used as output file names, such as `600to1200.root` and `600to1200.txt`.**
+    - `event_categories`: Definitions for _event categories_. Every event should be categorised into one of the event categories (provided that they are orthogonal), and then further classified into passing and failing categories based on the tagger. Each category should contain the following keys:
+        - `name`: Name of the event category. **The name used here will be used as output file names.**
+        - `rule`: Rule of the event category. This rule will be plugged directly into `TTree.Project` method, so the rules defined here should be in the compatible ROOT format.
 - `uncertainties`: Details on uncertainties to be added into the datacard. Each key is a uncertainty name, and should contain `mode` key inside. Currently `mode` supports `lnN`, `factor`, and `file`, and has different behaviours as follows:
     - `lnN`: Log-normal uncertainty. If no `category` key is present, this uncertainty will be applied to all _tagging categories_ with the specified `size` value. Specify tagging categories to apply this uncertainty using `category` key.
     - `factor`: Shape uncertainty calculated from _nominal_ input files with the designated expression. Must contain keys `up` and `down`.
     - `file`: Shape uncertainty calculated from files specified in `unc_files`. In this case, the uncertainty name must be the same as specified in `processes` key.
+- `perfileweights`: _(Optional)_ Adds a new branch with a _constant_ value to ROOT files. New branches will be added directly to the TTree named in `treename` in specified ROOT files before any histograms are made, which is ideal for updating the cross section for certain files. This option should contain a list of dictionaries following this pattern:
+    - `name`: Name for a new branch of the target TTree (named in `treename`)
+    - `value`: Value of a new branch. Must be constant number. _Values calculated based on other columns are not supported._
+    - `files`: List of ROOT file paths for the new branch to be added.
+
+  See `specfile_test_2022.yaml` for examples on how to use this option.
 
 #### `plot_histograms.py`
 The YAML input for `plot_histograms.py` has a different structure, aimed at plotting the prefit and postfit histograms as follows:

@@ -1,3 +1,4 @@
+from array import array
 import os
 import numpy as np
 import ROOT as pyr
@@ -94,7 +95,7 @@ def combine_histograms(histlist, finalname, xbins, xmin, xmax):
     for hist in histlist: cachehist.Add(hist)
     return cachehist
 
-def get_pt_range_name(pt_range): return f"{pt_range[0]}to{pt_range[1]}"
+#def get_pt_range_name(pt_range): return f"{pt_range[0]}to{pt_range[1]}"
 
 parser = argparse.ArgumentParser()
 parser.add_argument("yamlpath", help="YAML spec file path")
@@ -124,12 +125,14 @@ mass_variable = yaml_spec["distribution"]["mass_variable"]
 mass_range    = yaml_spec["distribution"]["mass_range"]
 mass_bins     = yaml_spec["distribution"]["mass_bins"]
 
-pt_variable       = yaml_spec["distribution"]["pt_variable"]
-pt_ranges_to_plot = yaml_spec["distribution"]["pt_ranges"]
-pt_ranges_name = []
-for pt_range in pt_ranges_to_plot:
-    if len(pt_range) == 3: pt_ranges_name.append(pt_range[2])
-    else: pt_ranges_name.append(get_pt_range_name(pt_range))
+#pt_variable       = yaml_spec["distribution"]["pt_variable"]
+#pt_ranges_to_plot = yaml_spec["distribution"]["pt_ranges"]
+#pt_ranges_name = []
+#for pt_range in pt_ranges_to_plot:
+#    if len(pt_range) == 3: pt_ranges_name.append(pt_range[2])
+#    else: pt_ranges_name.append(get_pt_range_name(pt_range))
+
+event_categories = [(e["name"], e["rule"]) for e in yaml_spec["distribution"]["event_categories"]]
 
 tagger_name = yaml_spec["tagger"]["name"]
 tagger_varname = yaml_spec["tagger"]["varname"]
@@ -145,38 +148,56 @@ def extract_hist_dict(filelist, process, weight, uncname="nominal"):
     for filecount, filepath in enumerate(filelist):
         print(f"Debug: filepath = {filepath}")
         cache_dict[filepath] = {}
-        for i, pt_range in enumerate(pt_ranges_to_plot):
-            print(f"Debug: pt range = {pt_range}")
-            pt_range_name = pt_ranges_name[i]
-            pt_cut = f"({pt_variable} >= {pt_range[0]}) && ({pt_variable} < {pt_range[1]})"
-            cache_dict[filepath][pt_range_name] = {}
+        #for i, pt_range in enumerate(pt_ranges_to_plot):
+        for event_catname, event_catrule in event_categories:
+            #print(f"Debug: pt range = {pt_range}")
+            print(f"Debug: event cat. name = {event_catname}")
+            print(f"Debug: event cat. rule = {event_catrule}")
+            #pt_range_name = pt_ranges_name[i]
+            #pt_cut = f"({pt_variable} >= {pt_range[0]}) && ({pt_variable} < {pt_range[1]})"
+            cache_dict[filepath][event_catname] = {}
             for cat in categories_to_plot:
                 print(f"Debug: cat = {cat}")
                 if process not in yaml_spec["categories"][cat]["processes"]: continue
                 category_cut = yaml_spec["categories"][cat]["cut"]
                 
-                histname = f"{process}_{uncname}_{filecount}_{pt_range_name}_{cat}"
+                histname = f"{process}_{uncname}_{filecount}_{event_catname}_{cat}"
                 
-                cache_dict[filepath][pt_range_name][cat] = {}
-                cache_dict[filepath][pt_range_name][cat]["pass"] = extract_histogram(
+                cache_dict[filepath][event_catname][cat] = {}
+                cache_dict[filepath][event_catname][cat]["pass"] = extract_histogram(
                     filename=filepath, treename=treename_to_plot, var=mass_variable,
-                    cut=f"({basecut_to_plot})&&({category_cut})&&({pt_cut})&&({tagger_cut_pass})",
+                    cut=f"({basecut_to_plot})&&({category_cut})&&({event_catrule})&&({tagger_cut_pass})",
                     weight=weight,
                     histname=histname+"_pass",
                     xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
                 )
-                cache_dict[filepath][pt_range_name][cat]["fail"] = extract_histogram(
+                cache_dict[filepath][event_catname][cat]["fail"] = extract_histogram(
                     filename=filepath, treename=treename_to_plot, var=mass_variable,
-                    cut=f"({basecut_to_plot})&&({category_cut})&&({pt_cut})&&({tagger_cut_fail})",
+                    cut=f"({basecut_to_plot})&&({category_cut})&&({event_catrule})&&({tagger_cut_fail})",
                     weight=weight,
                     histname=histname+"_fail",
                     xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
                 )
-                print(cache_dict[filepath][pt_range_name][cat])
+                print(cache_dict[filepath][event_catname][cat])
     
     print(cache_dict)
                 
     return cache_dict
+
+if "perfileweights" in yaml_spec.keys():
+    for weightset in yaml_spec["perfileweights"]:
+        branchname = weightset["name"]
+        branchvalue = float(weightset["value"])
+        for filename in weightset["files"]:
+            rootfile = pyr.TFile(filename, "UPDATE")
+            roottree = rootfile.Get(treename_to_plot)
+            array_value = array('f', [0])
+            new_branch = roottree.Branch(branchname, array_value, branchname + "/F")
+            array_value[0] = branchvalue
+            for _ in range(roottree.GetEntries()): new_branch.Fill()
+            new_branch.ResetAddress()
+            roottree.Write(treename_to_plot, pyr.TObject.kOverwrite)
+            rootfile.Close()
 
 hist_plots_per_processes_and_files = {}
 for process in yaml_spec["processes"].keys():
@@ -185,22 +206,23 @@ for process in yaml_spec["processes"].keys():
         print("Debug: Data")
         for filecount, filepath in enumerate(yaml_spec["processes"]["data"]["nominal_files"]):
             hist_plots_per_processes_and_files["data"][filepath] = {}
-            for i, pt_range in enumerate(pt_ranges_to_plot):
-                pt_range_name = pt_ranges_name[i]
-                pt_cut = f"({pt_variable} >= {pt_range[0]}) && ({pt_variable} < {pt_range[1]})"
-                hist_plots_per_processes_and_files["data"][filepath][pt_range_name] = {}
-                hist_plots_per_processes_and_files["data"][filepath][pt_range_name]["pass"] = extract_histogram(
+            #for i, pt_range in enumerate(pt_ranges_to_plot):
+            for event_catname, event_catrule in event_categories:
+                #pt_range_name = pt_ranges_name[i]
+                #pt_cut = f"({pt_variable} >= {pt_range[0]}) && ({pt_variable} < {pt_range[1]})"
+                hist_plots_per_processes_and_files["data"][filepath][event_catname] = {}
+                hist_plots_per_processes_and_files["data"][filepath][event_catname]["pass"] = extract_histogram(
                     filename=filepath, treename=treename_to_plot, var=mass_variable,
-                    cut=f"({basecut_to_plot})&&({pt_cut})&&({tagger_cut_pass})",
+                    cut=f"({basecut_to_plot})&&({event_catrule})&&({tagger_cut_pass})",
                     weight="1.",
-                    histname=f"data_{filecount}_{pt_range_name}_pass",
+                    histname=f"data_{filecount}_{event_catname}_pass",
                     xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
                 )
-                hist_plots_per_processes_and_files["data"][filepath][pt_range_name]["fail"] = extract_histogram(
+                hist_plots_per_processes_and_files["data"][filepath][event_catname]["fail"] = extract_histogram(
                     filename=filepath, treename=treename_to_plot, var=mass_variable,
-                    cut=f"({basecut_to_plot})&&({pt_cut})&&({tagger_cut_fail})",
+                    cut=f"({basecut_to_plot})&&({event_catrule})&&({tagger_cut_fail})",
                     weight="1.",
-                    histname=f"data_{filecount}_{pt_range_name}_fail",
+                    histname=f"data_{filecount}_{event_catname}_fail",
                     xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
                 )
         continue
@@ -248,30 +270,32 @@ for process in yaml_spec["processes"].keys():
             )
 
 if args.diagnosis:
-    for i, pt_range in enumerate(pt_ranges_to_plot):
-        pt_range_name = pt_ranges_name[i]
-        diagnosis_file = pyr.TFile(f"diagnosis_{pt_range_name}.root", "RECREATE")
+    #for i, pt_range in enumerate(pt_ranges_to_plot):
+    for event_catname, event_catrule in event_categories:
+        #pt_range_name = pt_ranges_name[i]
+        diagnosis_file = pyr.TFile(f"diagnosis_{event_catname}.root", "RECREATE")
         for process in hist_plots_per_processes_and_files.keys():
             for uncvariant in hist_plots_per_processes_and_files[process].keys():
                 for filepath in hist_plots_per_processes_and_files[process][uncvariant].keys():
-                    if pt_range_name in hist_plots_per_processes_and_files[process][uncvariant][filepath].keys():
-                        for category in hist_plots_per_processes_and_files[process][uncvariant][filepath][pt_range_name].keys():
-                            hist_plots_per_processes_and_files[process][uncvariant][filepath][pt_range_name][category]["pass"].Write()
-                            hist_plots_per_processes_and_files[process][uncvariant][filepath][pt_range_name][category]["fail"].Write()
+                    if event_catname in hist_plots_per_processes_and_files[process][uncvariant][filepath].keys():
+                        for category in hist_plots_per_processes_and_files[process][uncvariant][filepath][event_catname].keys():
+                            hist_plots_per_processes_and_files[process][uncvariant][filepath][event_catname][category]["pass"].Write()
+                            hist_plots_per_processes_and_files[process][uncvariant][filepath][event_catname][category]["fail"].Write()
         diagnosis_file.Close()
 
 hist_data_per_ptrange = {}
-for i, pt_range in enumerate(pt_ranges_to_plot):
-    pt_range_name = pt_ranges_name[i]
-    hist_data_per_ptrange[pt_range_name] = {"pass": {}, "fail": {}}
-    hist_data_per_ptrange[pt_range_name]["pass"] = combine_histograms(
-        [hist_plots_per_processes_and_files["data"][filepath][pt_range_name]["pass"] for filepath in hist_plots_per_processes_and_files["data"].keys()],
-        finalname=f"data_{pt_range_name}_pass", 
+#for i, pt_range in enumerate(pt_ranges_to_plot):
+    #pt_range_name = pt_ranges_name[i]
+for event_catname, event_catrule in event_categories:
+    hist_data_per_ptrange[event_catname] = {"pass": {}, "fail": {}}
+    hist_data_per_ptrange[event_catname]["pass"] = combine_histograms(
+        [hist_plots_per_processes_and_files["data"][filepath][event_catname]["pass"] for filepath in hist_plots_per_processes_and_files["data"].keys()],
+        finalname=f"data_{event_catname}_pass", 
         xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
     )
-    hist_data_per_ptrange[pt_range_name]["fail"] = combine_histograms(
-        [hist_plots_per_processes_and_files["data"][filepath][pt_range_name]["fail"] for filepath in hist_plots_per_processes_and_files["data"].keys()],
-        finalname=f"data_{pt_range_name}_fail", 
+    hist_data_per_ptrange[event_catname]["fail"] = combine_histograms(
+        [hist_plots_per_processes_and_files["data"][filepath][event_catname]["fail"] for filepath in hist_plots_per_processes_and_files["data"].keys()],
+        finalname=f"data_{event_catname}_fail", 
         xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
     )
 
@@ -284,61 +308,61 @@ for category in categories_to_plot:
         hist_plots_per_category[category][unc+"_up"] = {}
         hist_plots_per_category[category][unc+"_down"] = {}
     
-    for i, pt_range in enumerate(pt_ranges_to_plot):
-        pt_range_name = pt_ranges_name[i]
-        
-        hist_plots_per_category[category]["nominal"][pt_range_name] = {}
+    #for i, pt_range in enumerate(pt_ranges_to_plot):
+        #pt_range_name = pt_ranges_name[i]
+    for event_catname, event_catrule in event_categories:
+        hist_plots_per_category[category]["nominal"][event_catname] = {}
         passing_list = []
         failing_list = []
         for process in yaml_spec["categories"][category]["processes"]:
             for filepath in hist_plots_per_processes_and_files[process]["nominal"].keys():
-                passing_list.append(hist_plots_per_processes_and_files[process]["nominal"][filepath][pt_range_name][category]["pass"])
-                failing_list.append(hist_plots_per_processes_and_files[process]["nominal"][filepath][pt_range_name][category]["fail"])
-        hist_plots_per_category[category]["nominal"][pt_range_name]["pass"] = combine_histograms(
+                passing_list.append(hist_plots_per_processes_and_files[process]["nominal"][filepath][event_catname][category]["pass"])
+                failing_list.append(hist_plots_per_processes_and_files[process]["nominal"][filepath][event_catname][category]["fail"])
+        hist_plots_per_category[category]["nominal"][event_catname]["pass"] = combine_histograms(
             histlist=passing_list,
-            finalname=f"{category}_{pt_range_name}_pass_nominal",
+            finalname=f"{category}_{event_catname}_pass_nominal",
             xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
         )
-        hist_plots_per_category[category]["nominal"][pt_range_name]["fail"] = combine_histograms(
+        hist_plots_per_category[category]["nominal"][event_catname]["fail"] = combine_histograms(
             histlist=failing_list,
-            finalname=f"{category}_{pt_range_name}_fail_nominal",
+            finalname=f"{category}_{event_catname}_fail_nominal",
             xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
         )
         
         for unc in unc_to_plot:
-            hist_plots_per_category[category][unc+"_up"][pt_range_name] = {}
-            hist_plots_per_category[category][unc+"_down"][pt_range_name] = {}
+            hist_plots_per_category[category][unc+"_up"][event_catname] = {}
+            hist_plots_per_category[category][unc+"_down"][event_catname] = {}
             passing_list_up   = []
             passing_list_down = []
             failing_list_up   = []
             failing_list_down = []
             for process in yaml_spec["categories"][category]["processes"]:
                 for filepath in hist_plots_per_processes_and_files[process][unc+"_up"].keys():
-                    passing_list_up.append(hist_plots_per_processes_and_files[process][unc+"_up"][filepath][pt_range_name][category]["pass"])
-                    failing_list_up.append(hist_plots_per_processes_and_files[process][unc+"_up"][filepath][pt_range_name][category]["fail"])
+                    passing_list_up.append(hist_plots_per_processes_and_files[process][unc+"_up"][filepath][event_catname][category]["pass"])
+                    failing_list_up.append(hist_plots_per_processes_and_files[process][unc+"_up"][filepath][event_catname][category]["fail"])
                 for filepath in hist_plots_per_processes_and_files[process][unc+"_down"].keys():
-                    passing_list_down.append(hist_plots_per_processes_and_files[process][unc+"_down"][filepath][pt_range_name][category]["pass"])
-                    failing_list_down.append(hist_plots_per_processes_and_files[process][unc+"_down"][filepath][pt_range_name][category]["fail"])
+                    passing_list_down.append(hist_plots_per_processes_and_files[process][unc+"_down"][filepath][event_catname][category]["pass"])
+                    failing_list_down.append(hist_plots_per_processes_and_files[process][unc+"_down"][filepath][event_catname][category]["fail"])
                     
-            hist_plots_per_category[category][unc+"_up"][pt_range_name]["pass"] = combine_histograms(
+            hist_plots_per_category[category][unc+"_up"][event_catname]["pass"] = combine_histograms(
                 histlist=passing_list_up,
-                finalname=f"{category}_{pt_range_name}_pass_{unc}Up",
+                finalname=f"{category}_{event_catname}_pass_{unc}Up",
                 xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
             )
-            hist_plots_per_category[category][unc+"_up"][pt_range_name]["fail"] = combine_histograms(
+            hist_plots_per_category[category][unc+"_up"][event_catname]["fail"] = combine_histograms(
                 histlist=failing_list_up,
-                finalname=f"{category}_{pt_range_name}_fail_{unc}Up",
+                finalname=f"{category}_{event_catname}_fail_{unc}Up",
                 xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
             )
             
-            hist_plots_per_category[category][unc+"_down"][pt_range_name]["pass"] = combine_histograms(
+            hist_plots_per_category[category][unc+"_down"][event_catname]["pass"] = combine_histograms(
                 histlist=passing_list_down,
-                finalname=f"{category}_{pt_range_name}_pass_{unc}Down",
+                finalname=f"{category}_{event_catname}_pass_{unc}Down",
                 xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
             )
-            hist_plots_per_category[category][unc+"_down"][pt_range_name]["fail"] = combine_histograms(
+            hist_plots_per_category[category][unc+"_down"][event_catname]["fail"] = combine_histograms(
                 histlist=failing_list_down,
-                finalname=f"{category}_{pt_range_name}_fail_{unc}Down",
+                finalname=f"{category}_{event_catname}_fail_{unc}Down",
                 xbins=mass_bins, xmin=mass_range[0], xmax=mass_range[1]
             )
 
@@ -354,45 +378,46 @@ for category in hist_plots_per_category.keys():
                 print(hist_plots_per_category[category][unc][pt_range][passorfail])
 
 analysis_obj_collection = {}
-for i, pt_range in enumerate(pt_ranges_to_plot):
+#for i, pt_range in enumerate(pt_ranges_to_plot):
+for event_catname, event_catrule in event_categories:
     analysis_hist_obj = AnalysisHistogram(categories_to_plot, mass_bins, mass_range[0], mass_range[1], treename_to_plot)
-    pt_range_name = pt_ranges_name[i]
-    analysis_hist_obj.add_data_hist(hist=hist_data_per_ptrange[pt_range_name]["pass"], isPass=True)
-    analysis_hist_obj.add_data_hist(hist=hist_data_per_ptrange[pt_range_name]["fail"], isPass=False)
+    #pt_range_name = pt_ranges_name[i]
+    analysis_hist_obj.add_data_hist(hist=hist_data_per_ptrange[event_catname]["pass"], isPass=True)
+    analysis_hist_obj.add_data_hist(hist=hist_data_per_ptrange[event_catname]["fail"], isPass=False)
     for category in categories_to_plot:
         analysis_hist_obj.add_nominal_hist(
             category=category, 
-            histobj=hist_plots_per_category[category]["nominal"][pt_range_name]["pass"],
+            histobj=hist_plots_per_category[category]["nominal"][event_catname]["pass"],
             isPass=True
         )
         analysis_hist_obj.add_nominal_hist(
             category=category, 
-            histobj=hist_plots_per_category[category]["nominal"][pt_range_name]["fail"],
+            histobj=hist_plots_per_category[category]["nominal"][event_catname]["fail"],
             isPass=False
         )
         for unc in unc_to_plot:
             analysis_hist_obj.define_unc(category=category, unc=unc)
             analysis_hist_obj.add_unc_hist(
                 category=category, unc=unc,
-                histobj=hist_plots_per_category[category][unc+"_up"][pt_range_name]["pass"], 
+                histobj=hist_plots_per_category[category][unc+"_up"][event_catname]["pass"], 
                 isUp=True, isPass=True
             )
             analysis_hist_obj.add_unc_hist(
                 category=category, unc=unc,
-                histobj=hist_plots_per_category[category][unc+"_down"][pt_range_name]["pass"], 
+                histobj=hist_plots_per_category[category][unc+"_down"][event_catname]["pass"], 
                 isUp=False, isPass=True
             )
             analysis_hist_obj.add_unc_hist(
                 category=category, unc=unc,
-                histobj=hist_plots_per_category[category][unc+"_up"][pt_range_name]["fail"], 
+                histobj=hist_plots_per_category[category][unc+"_up"][event_catname]["fail"], 
                 isUp=True, isPass=False
             )
             analysis_hist_obj.add_unc_hist(
                 category=category, unc=unc,
-                histobj=hist_plots_per_category[category][unc+"_down"][pt_range_name]["fail"], 
+                histobj=hist_plots_per_category[category][unc+"_down"][event_catname]["fail"], 
                 isUp=False, isPass=False
             )
-    analysis_obj_collection[pt_range_name] = analysis_hist_obj
+    analysis_obj_collection[event_catname] = analysis_hist_obj
 print(analysis_obj_collection)
 for key in analysis_obj_collection.keys():
     print(analysis_obj_collection[key].__dict__)
