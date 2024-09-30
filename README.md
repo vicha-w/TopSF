@@ -1,7 +1,7 @@
 # TopSF
 A _better_ framework for scale factor measurement, designed with flexibility in mind.
 
-**This repository is under construction!**
+**For feature request or bugs please make an issue in this GitHub repository. Feedback is always appreciated here. Thanks!**
 
 ## Why use this?
 - Supports _any_ ROOT ntuple structure. No need to conform to any hardcoded format.
@@ -25,14 +25,14 @@ python plot_histograms.py PLOT_YAML_FILE
 ```
 `make_histogram.py` is the main script that generates the _final_ 1D distributions containing events passing and failing the designated tagger. It requires a YAML input file detailing everything regarding the setup, such as input ROOT file location, processes and tagging categories involved, and uncertainty definitions. 
 
-The output files from this script are, per one pT category,
+The output files from this script are, per one event category,
 - ROOT file containing 1D distributions
-- an accompanying combine card for that pT category
+- an accompanying combine card for that event category
 - if `--diagnosis` option is present, diagnosis ROOT file containing all distributions created from each input ROOT file _for MC_, arranged by the file name order
 
 This script will also create one helpful bash script invoking `text2workspace` program, which can be used on machines with HiggsCombine set up.
 
-Normally, to save time, other frameworks may generate the intermediate 2D histogram templates (containing jet pT versus jet mass distribution) for fast datacard generation in case the user wants to adjust the jet pT range. Unfortunately this may lead to bugs since the 2D histogram may not always have the exact pT ranges encoded. To avoid this surprise, **this script will only generate 1D distribution and no intermediate 2D histogram templates**.
+Normally, to save time, other frameworks may generate the intermediate 2D histogram templates (containing jet pT versus jet mass distribution) for fast datacard generation in case the user wants to adjust the jet pT range. Unfortunately this may lead to bugs since the 2D histogram may not always have the exact pT ranges encoded. To avoid this surprise, **this script will only generate 1D distribution and no intermediate 2D histogram templates**. Furthermore, to offer more flexibility in event categories which may not entirely rely on one pT variable only (such as scale factor measurements for two or more variables, where the categories do not have to follow in the grid fashion), instead of only defining pT ranges, **you can (and must) define your own event categories**. This means, for each event category, you must include all the variables needed in the rule associated with the category.
 
 The output files from this script should be used to measure scale factors using HiggsCombine. Refer to `COMBINE_README.md` file for more details.
 
@@ -91,15 +91,15 @@ The YAML input for `plot_histograms.py` has a different structure, aimed at plot
 
 ### What's inside the output ROOT file
 The output ROOT file contains _all_ 1D histograms including passing and failing distributions. The naming convention is as follows:
-- For data histograms, `data_{PT_CATEGORY}_pass` or `data_{PT_CATEGORY}_fail`
+- For data histograms, `data_{EVENT_CATEGORY}_pass` or `data_{EVENT_CATEGORY}_fail`
 - For MC histograms, 
-    - `{TAGGING_CATEGORY}_{PT_CATEGORY}_pass_nominal`
-    - `{TAGGING_CATEGORY}_{PT_CATEGORY}_pass_{UNCERTAINTY}Up`
-    - `{TAGGING_CATEGORY}_{PT_CATEGORY}_pass_{UNCERTAINTY}Down`
-    - `{TAGGING_CATEGORY}_{PT_CATEGORY}_fail_nominal`
-    - `{TAGGING_CATEGORY}_{PT_CATEGORY}_fail_{UNCERTAINTY}Up`
-    - `{TAGGING_CATEGORY}_{PT_CATEGORY}_fail_{UNCERTAINTY}Down`
+    - `{TAGGING_CATEGORY}_{EVENT_CATEGORY}_pass_nominal`
+    - `{TAGGING_CATEGORY}_{EVENT_CATEGORY}_pass_{UNCERTAINTY}Up`
+    - `{TAGGING_CATEGORY}_{EVENT_CATEGORY}_pass_{UNCERTAINTY}Down`
+    - `{TAGGING_CATEGORY}_{EVENT_CATEGORY}_fail_nominal`
+    - `{TAGGING_CATEGORY}_{EVENT_CATEGORY}_fail_{UNCERTAINTY}Up`
+    - `{TAGGING_CATEGORY}_{EVENT_CATEGORY}_fail_{UNCERTAINTY}Down`
 
-If `--diagnosis` option is turned on for `make_histograms.py`, another ROOT file, per pT category, will be created with the name `diagnosis_{PT_CATEGORY}.root` The naming convention in this file is 
-`{PROCESS}_{UNCERTAINTY}_{up|down}_{FILE_INDEX}_{PT_CATEGORY}_{TAGGING_CATEGORY}_{pass|fail}`
+If `--diagnosis` option is turned on for `make_histograms.py`, another ROOT file, per event category, will be created with the name `diagnosis_{EVENT_CATEGORY}.root` The naming convention in this file is 
+`{PROCESS}_{UNCERTAINTY}_{up|down}_{FILE_INDEX}_{EVENT_CATEGORY}_{TAGGING_CATEGORY}_{pass|fail}`
 where `FILE_INDEX` represents the order of the input file specified in the YAML file.
