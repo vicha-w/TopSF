@@ -26,6 +26,8 @@ python plot_histograms.py PLOT_YAML_FILE
 ```
 `make_histogram.py` is the main script that generates the _final_ 1D distributions containing events passing and failing the designated tagger. It requires a YAML input file detailing everything regarding the setup, such as input ROOT file location, processes and tagging categories involved, and uncertainty definitions. 
 
+The script will classify events into different event categories, tagging categories, and passing/failing distributions. Each MC ntuple file can be assigned into different **tagging categories**, such as events containing top-tagged jets, W-tagged jets, etc. For each MC file, an event may be classified into **event categories**, such as $p_T \in [300, 400]$, and then further classified depending on whether or not the event _passes_ or _fails_ the tagger cut, such as BDT cut greater than 0.5. The end results are, per event category, two 1D distributions for events passing tagger cut and events failing tagger cut. Each distribution will contain multiple tagging categories in the same sense as the normal event distribution containing different MC processes. Finally, data events are classified in the same way and assigned into these distributions, but are not associated with any tagging categories.
+
 The output files from this script are, per one event category,
 - ROOT file containing 1D distributions
 - an accompanying combine card for that event category
@@ -33,7 +35,7 @@ The output files from this script are, per one event category,
 
 This script will also create one helpful bash script invoking `text2workspace` program, which can be used on machines with HiggsCombine set up.
 
-Normally, to save time, other frameworks may generate the intermediate 2D histogram templates (containing jet pT versus jet mass distribution) for fast datacard generation in case the user wants to adjust the jet pT range. Unfortunately this may lead to bugs since the 2D histogram may not always have the exact pT ranges encoded. To avoid this surprise, **this script will only generate 1D distribution and no intermediate 2D histogram templates**. 
+Normally, to save time, other frameworks may generate the intermediate 2D histogram templates (containing jet pT versus jet mass distribution, for example) for fast datacard generation in case the user wants to adjust the jet pT range. Unfortunately this may lead to bugs since the 2D histogram may not always have the exact pT ranges encoded. To avoid this surprise, **this script will only generate 1D distribution and no intermediate 2D histogram templates**. 
 
 Furthermore, to offer more flexibility in event categories which may not entirely rely on one pT variable only (such as scale factor measurements for two or more variables, where the categories do not have to follow in the grid fashion), instead of only defining pT ranges, **you can (and must) define your own event categories**. This means, for each event category, you must include all the variables needed in the rule associated with the category.
 
@@ -59,7 +61,8 @@ The YAML input for `make_histograms.py` must contain details about your input RO
 - `tagger`: Details on the designated tagger.
     - `name`: Name of the tagger to be used in files
     - `varname`: Name of the discrimnator _as seen in the ntuple files_.
-    - `cut`: Discriminator cut for the tagger. Passing and failing events are defined as events with discriminator values higher and lower than this cut respectively.
+    - `cut`: Discriminator cut value for the tagger. Passing and failing events are defined as events with discriminator values higher and lower than this cut respectively.
+    - `cutrule`: Rule for tagger cuts. Events that pass this tagger cut rule will be put in _passing_ distribution, while events that fail this will be put in _failing_ distribution. Overrides `varname` and `cut` keys.
 - `distribution`: Details on the final distribution for scale factor measurement.
     - `mass_variable`: Target variable to be populated in the distribution. Usually jet mass is used.
     - `mass_range`: Range of the target variable.

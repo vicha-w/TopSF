@@ -135,9 +135,13 @@ mass_bins     = yaml_spec["distribution"]["mass_bins"]
 event_categories = [(e["name"], e["rule"]) for e in yaml_spec["distribution"]["event_categories"]]
 
 tagger_name = yaml_spec["tagger"]["name"]
-tagger_varname = yaml_spec["tagger"]["varname"]
-tagger_cut_pass = f'{tagger_varname}>={yaml_spec["tagger"]["cut"]}'
-tagger_cut_fail = f'{tagger_varname}<{yaml_spec["tagger"]["cut"]}'
+if "cutrule" in yaml_spec["tagger"].keys():
+    tagger_cut_pass = yaml_spec["tagger"]["cutrule"]
+    tagger_cut_fail = f"!({tagger_cut_pass})"
+else:
+    tagger_varname = yaml_spec["tagger"]["varname"]
+    tagger_cut_pass = f'{tagger_varname}>={yaml_spec["tagger"]["cut"]}'
+    tagger_cut_fail = f'{tagger_varname}<{yaml_spec["tagger"]["cut"]}'
 
 unc_to_plot = [unc for unc in yaml_spec["uncertainties"].keys() if yaml_spec["uncertainties"][unc]["mode"] in ["factor", "file"]]
 
