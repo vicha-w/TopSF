@@ -18,16 +18,12 @@ eventcats:
   - name: 300to400
     propername: "$p_T \\in [300, 400]$"
     prefitfile: HOTVRtagger_TopSF_2018/300to400.root
-    postfitfile: HOTVRtagger_TopSF_2018/fitDiagnostics300to400.root
   - name: 400to480
     propername: "$p_T \\in [400, 480]$"
     prefitfile: HOTVRtagger_TopSF_2018/400to480.root
-    postfitfile: HOTVRtagger_TopSF_2018/fitDiagnostics400to480.root
   - name: 480to600
     propername: "$p_T \\in [480, 600]$"
     prefitfile: HOTVRtagger_TopSF_2018/480to600.root
-    postfitfile: HOTVRtagger_TopSF_2018/fitDiagnostics480to600.root
   - name: 600to1200
     propername: "$p_T \\in [600, 1200]$"
     prefitfile: HOTVRtagger_TopSF_2018/600to1200.root
-    postfitfile: HOTVRtagger_TopSF_2018/fitDiagnostics600to1200.root

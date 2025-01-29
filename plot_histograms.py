@@ -259,7 +259,6 @@ for eventcat in yaml_spec["eventcats"]:
     if "propername" in eventcat.keys(): ptrange_propername = eventcat["propername"]
     else: ptrange_propername = eventcat_name
     prefitfile  = pyr.TFile(eventcat["prefitfile"])
-    postfitfile = pyr.TFile(eventcat["postfitfile"])
     
     hist_prefit_data_pass = prefitfile.Get(f"data_{eventcat_name}_pass")
     hist_prefit_data_fail = prefitfile.Get(f"data_{eventcat_name}_fail")
@@ -276,22 +275,6 @@ for eventcat in yaml_spec["eventcats"]:
         hist_prefit_mc_pass_sum.Add(hist_prefit_mc_pass[category])
         hist_prefit_mc_fail_sum.Add(hist_prefit_mc_fail[category])
     
-    hist_postfit_data_pass = postfitfile.Get(f"shapes_prefit/pass/data")
-    hist_postfit_data_fail = postfitfile.Get(f"shapes_prefit/fail/data")
-    hist_postfit_mc_pass = {}
-    hist_postfit_mc_fail = {}
-    hist_postfit_mc_pass_prefit = {}
-    hist_postfit_mc_fail_prefit = {}
-    for category in yaml_spec["categories"].keys():
-        hist_postfit_mc_pass[category] = postfitfile.Get(f"shapes_fit_s/pass/{category}")
-        hist_postfit_mc_fail[category] = postfitfile.Get(f"shapes_fit_s/fail/{category}")
-        hist_postfit_mc_pass_prefit[category] = postfitfile.Get(f"shapes_prefit/pass/{category}")
-        hist_postfit_mc_fail_prefit[category] = postfitfile.Get(f"shapes_prefit/fail/{category}")
-    hist_postfit_mc_pass_sum = postfitfile.Get("shapes_fit_s/pass/total")
-    hist_postfit_mc_fail_sum = postfitfile.Get("shapes_fit_s/fail/total")
-    hist_postfit_mc_pass_prefit_sum = postfitfile.Get("shapes_prefit/pass/total")
-    hist_postfit_mc_fail_prefit_sum = postfitfile.Get("shapes_prefit/fail/total")
-    
     array_prefit_data_pass, array_prefit_data_pass_err = hist_to_array(hist_prefit_data_pass, isData=True)
     array_prefit_data_fail, array_prefit_data_fail_err = hist_to_array(hist_prefit_data_fail, isData=True)
     array_prefit_mc_pass = {}
@@ -304,30 +287,8 @@ for eventcat in yaml_spec["eventcats"]:
     array_prefit_mc_pass_sum, array_prefit_mc_pass_sum_err = hist_to_array(hist_prefit_mc_pass_sum)
     array_prefit_mc_fail_sum, array_prefit_mc_fail_sum_err = hist_to_array(hist_prefit_mc_fail_sum)
     
-    array_postfit_data_pass, array_postfit_data_pass_err = graph_to_array(hist_postfit_data_pass)
-    array_postfit_data_fail, array_postfit_data_fail_err = graph_to_array(hist_postfit_data_fail)
-    array_postfit_mc_pass = {}
-    array_postfit_mc_fail = {}
-    array_postfit_mc_pass_err = {}
-    array_postfit_mc_fail_err = {}
-    array_postfit_mc_pass_prefit = {}
-    array_postfit_mc_fail_prefit = {}
-    array_postfit_mc_pass_prefit_err = {}
-    array_postfit_mc_fail_prefit_err = {}
-    for category in yaml_spec["categories"].keys():
-        array_postfit_mc_pass[category], array_postfit_mc_pass_err[category] = hist_to_array(hist_postfit_mc_pass[category])
-        array_postfit_mc_fail[category], array_postfit_mc_fail_err[category] = hist_to_array(hist_postfit_mc_fail[category])
-        array_postfit_mc_pass_prefit[category], array_postfit_mc_pass_prefit_err[category] = hist_to_array(hist_postfit_mc_pass_prefit[category])
-        array_postfit_mc_fail_prefit[category], array_postfit_mc_fail_prefit_err[category] = hist_to_array(hist_postfit_mc_fail_prefit[category])
-    array_postfit_mc_pass_sum, array_postfit_mc_pass_sum_err = hist_to_array(hist_postfit_mc_pass_sum)
-    array_postfit_mc_fail_sum, array_postfit_mc_fail_sum_err = hist_to_array(hist_postfit_mc_fail_sum)
-    array_postfit_mc_pass_prefit_sum, array_postfit_mc_pass_prefit_sum_err = hist_to_array(hist_postfit_mc_pass_prefit_sum)
-    array_postfit_mc_fail_prefit_sum, array_postfit_mc_fail_prefit_sum_err = hist_to_array(hist_postfit_mc_fail_prefit_sum)
-    
     histbins_prefit_pass = hist_to_bins(hist_prefit_mc_pass_sum)
     histbins_prefit_fail = hist_to_bins(hist_prefit_mc_fail_sum)
-    histbins_postfit_pass = hist_to_bins(hist_postfit_mc_pass_sum)
-    histbins_postfit_fail = hist_to_bins(hist_postfit_mc_fail_sum)
     
     plot_prefit(
         array_prefit_mc_pass, 
@@ -349,6 +310,50 @@ for eventcat in yaml_spec["eventcats"]:
         ptrange_propername + ", fail", 
         f"{yaml_spec['savedir']}/prefit_fail_{eventcat_name}.png"
     )
+    
+    if "postfitfile" not in eventcat.keys(): continue
+    
+    postfitfile = pyr.TFile(eventcat["postfitfile"])
+    
+    hist_postfit_data_pass = postfitfile.Get(f"shapes_prefit/pass/data")
+    hist_postfit_data_fail = postfitfile.Get(f"shapes_prefit/fail/data")
+    hist_postfit_mc_pass = {}
+    hist_postfit_mc_fail = {}
+    hist_postfit_mc_pass_prefit = {}
+    hist_postfit_mc_fail_prefit = {}
+    for category in yaml_spec["categories"].keys():
+        hist_postfit_mc_pass[category] = postfitfile.Get(f"shapes_fit_s/pass/{category}")
+        hist_postfit_mc_fail[category] = postfitfile.Get(f"shapes_fit_s/fail/{category}")
+        hist_postfit_mc_pass_prefit[category] = postfitfile.Get(f"shapes_prefit/pass/{category}")
+        hist_postfit_mc_fail_prefit[category] = postfitfile.Get(f"shapes_prefit/fail/{category}")
+    hist_postfit_mc_pass_sum = postfitfile.Get("shapes_fit_s/pass/total")
+    hist_postfit_mc_fail_sum = postfitfile.Get("shapes_fit_s/fail/total")
+    hist_postfit_mc_pass_prefit_sum = postfitfile.Get("shapes_prefit/pass/total")
+    hist_postfit_mc_fail_prefit_sum = postfitfile.Get("shapes_prefit/fail/total")
+    
+    array_postfit_data_pass, array_postfit_data_pass_err = graph_to_array(hist_postfit_data_pass)
+    array_postfit_data_fail, array_postfit_data_fail_err = graph_to_array(hist_postfit_data_fail)
+    array_postfit_mc_pass = {}
+    array_postfit_mc_fail = {}
+    array_postfit_mc_pass_err = {}
+    array_postfit_mc_fail_err = {}
+    array_postfit_mc_pass_prefit = {}
+    array_postfit_mc_fail_prefit = {}
+    array_postfit_mc_pass_prefit_err = {}
+    array_postfit_mc_fail_prefit_err = {}
+    for category in yaml_spec["categories"].keys():
+        array_postfit_mc_pass[category], array_postfit_mc_pass_err[category] = hist_to_array(hist_postfit_mc_pass[category])
+        array_postfit_mc_fail[category], array_postfit_mc_fail_err[category] = hist_to_array(hist_postfit_mc_fail[category])
+        array_postfit_mc_pass_prefit[category], array_postfit_mc_pass_prefit_err[category] = hist_to_array(hist_postfit_mc_pass_prefit[category])
+        array_postfit_mc_fail_prefit[category], array_postfit_mc_fail_prefit_err[category] = hist_to_array(hist_postfit_mc_fail_prefit[category])
+    array_postfit_mc_pass_sum, array_postfit_mc_pass_sum_err = hist_to_array(hist_postfit_mc_pass_sum)
+    array_postfit_mc_fail_sum, array_postfit_mc_fail_sum_err = hist_to_array(hist_postfit_mc_fail_sum)
+    array_postfit_mc_pass_prefit_sum, array_postfit_mc_pass_prefit_sum_err = hist_to_array(hist_postfit_mc_pass_prefit_sum)
+    array_postfit_mc_fail_prefit_sum, array_postfit_mc_fail_prefit_sum_err = hist_to_array(hist_postfit_mc_fail_prefit_sum)
+    
+    histbins_postfit_pass = hist_to_bins(hist_postfit_mc_pass_sum)
+    histbins_postfit_fail = hist_to_bins(hist_postfit_mc_fail_sum)
+    
     plot_postfit(
         array_postfit_mc_pass_prefit, 
         array_postfit_mc_pass_prefit_err, 

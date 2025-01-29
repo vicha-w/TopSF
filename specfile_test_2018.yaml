@@ -319,7 +319,7 @@ categories:
     colour: 867
   other:
     processes:
-      #- qcd
+      - qcd
       - diboson
       - wjets
     cut: "1"
@@ -395,4 +395,4 @@ uncertainties:
   lhescalemur:
     mode: "factor"
     up: "(LHEScaleWeight[7]*LHEScaleWeightNorm[7])/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"
-    down: "LHEScaleWeight[1]*LHEScaleWeightNorm[1]/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"'
+    down: "LHEScaleWeight[1]*LHEScaleWeightNorm[1]/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"

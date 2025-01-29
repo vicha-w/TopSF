@@ -277,7 +277,7 @@ if args.diagnosis:
     #for i, pt_range in enumerate(pt_ranges_to_plot):
     for event_catname, event_catrule in event_categories:
         #pt_range_name = pt_ranges_name[i]
-        diagnosis_file = pyr.TFile(f"diagnosis_{event_catname}.root", "RECREATE")
+        diagnosis_file = pyr.TFile(f"{analysis_name}/diagnosis_{event_catname}.root", "RECREATE")
         for process in hist_plots_per_processes_and_files.keys():
             for uncvariant in hist_plots_per_processes_and_files[process].keys():
                 for filepath in hist_plots_per_processes_and_files[process][uncvariant].keys():
