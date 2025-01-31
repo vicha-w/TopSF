@@ -109,7 +109,8 @@ def plot_prefit(array_mc, array_mc_error, array_mc_sum, array_data, array_data_e
         ax=main_ax,
     )
     
-    fig.savefig(filename, bbox_inches="tight")
+    fig.savefig(filename + ".png", bbox_inches="tight")
+    fig.savefig(filename + ".pdf", bbox_inches="tight")
 
 def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, array_prefit_mc_sum_error, array_postfit_mc, array_postfit_mc_error, array_postfit_mc_sum, array_postfit_mc_sum_error, array_data, array_data_err, histbins, legendtitle, filename):
     fig = plt.figure(figsize=(12, 12), facecolor="white")
@@ -252,7 +253,8 @@ def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, ar
         ax=main_ax,
     )
     
-    fig.savefig(filename, bbox_inches="tight")
+    fig.savefig(filename + ".png", bbox_inches="tight")
+    fig.savefig(filename + ".pdf", bbox_inches="tight")
 
 for eventcat in yaml_spec["eventcats"]:
     eventcat_name = eventcat["name"]
@@ -298,7 +300,7 @@ for eventcat in yaml_spec["eventcats"]:
         array_prefit_data_pass_err, 
         histbins_prefit_pass, 
         ptrange_propername + ", pass", 
-        f"{yaml_spec['savedir']}/prefit_pass_{eventcat_name}.png"
+        f"{yaml_spec['savedir']}/prefit_pass_{eventcat_name}"
     )
     plot_prefit(
         array_prefit_mc_fail, 
@@ -308,7 +310,7 @@ for eventcat in yaml_spec["eventcats"]:
         array_prefit_data_fail_err, 
         histbins_prefit_fail, 
         ptrange_propername + ", fail", 
-        f"{yaml_spec['savedir']}/prefit_fail_{eventcat_name}.png"
+        f"{yaml_spec['savedir']}/prefit_fail_{eventcat_name}"
     )
     
     if "postfitfile" not in eventcat.keys(): continue
@@ -367,7 +369,7 @@ for eventcat in yaml_spec["eventcats"]:
         array_postfit_data_pass_err, 
         histbins_prefit_pass,
         ptrange_propername + ", pass", 
-        f"{yaml_spec['savedir']}/postfit_pass_{eventcat_name}.png"
+        f"{yaml_spec['savedir']}/postfit_pass_{eventcat_name}"
     )
     plot_postfit(
         array_postfit_mc_fail_prefit, 
@@ -382,5 +384,5 @@ for eventcat in yaml_spec["eventcats"]:
         array_postfit_data_fail_err, 
         histbins_prefit_fail,
         ptrange_propername + ", fail", 
-        f"{yaml_spec['savedir']}/postfit_fail_{eventcat_name}.png"
+        f"{yaml_spec['savedir']}/postfit_fail_{eventcat_name}"
     )
