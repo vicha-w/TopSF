@@ -1,0 +1,82 @@
+lumi: 27.0
+xlabel: "HOTVR jet mass (GeV)"
+savedir: "HOTVRtagger_TopSF_2022EE_withlowess"
+com: 13.6
+categories:
+  topmatched:
+    color: "#e42536"
+    propername: "Top-matched"
+  wmatched:
+    color: "#f89c20"
+    propername: "Semi-matched"
+  nonmatched:
+    color: "#5790fc"
+    propername: "Non-matched"
+  other:
+    color: "#964a8b"
+    propername: "Other"
+eventcats:
+  - name: 300to400
+    variable: fj_1_rawmass
+    propername: "$p_T \\in [300, 400]$"
+    prefitfile: HOTVRtagger_TopSF_2022EE_withlowess/fj_1_rawmass/300to400.root
+    postfitfile: HOTVRtagger_TopSF_2022EE_withlowess_results/2022EE_300to400/fitDiagnostics2022EE_300to400.root
+  - name: 400to480
+    variable: fj_1_rawmass
+    propername: "$p_T \\in [400, 480]$"
+    prefitfile: HOTVRtagger_TopSF_2022EE_withlowess/fj_1_rawmass/400to480.root
+    postfitfile: HOTVRtagger_TopSF_2022EE_withlowess_results/2022EE_400to480/fitDiagnostics2022EE_400to480.root
+  - name: 480to600
+    variable: fj_1_rawmass
+    propername: "$p_T \\in [480, 600]$"
+    prefitfile: HOTVRtagger_TopSF_2022EE_withlowess/fj_1_rawmass/480to600.root
+    postfitfile: HOTVRtagger_TopSF_2022EE_withlowess_results/2022EE_480to600/fitDiagnostics2022EE_480to600.root
+  - name: 600to1200
+    variable: fj_1_rawmass
+    propername: "$p_T \\in [600, 1200]$"
+    prefitfile: HOTVRtagger_TopSF_2022EE_withlowess/fj_1_rawmass/600to1200.root
+    postfitfile: HOTVRtagger_TopSF_2022EE_withlowess_results/2022EE_600to1200/fitDiagnostics2022EE_600to1200.root
+  #- name: pt_diags
+  #  variable: fj_1_pt
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/fj_1_pt/pt_diags.root
+  #- name: pt_diags
+  #  variable: muon_pt
+  #  xlabel: "Muon $p_T$ (GeV)"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/muon_pt/pt_diags.root
+  #- name: pt_diags
+  #  variable: preselectedHOTVRJets_scoreBDT
+  #  xlabel: "HOTVR jet BDT"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/preselectedHOTVRJets_scoreBDT/pt_diags.root
+  #- name: pt_diags
+  #  variable: preselectedHOTVRJets_fractional_subjet_pt
+  #  xlabel: "HOTVR fractional subjet $p_T$"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/preselectedHOTVRJets_fractional_subjet_pt/pt_diags.root
+  #- name: pt_diags
+  #  variable: preselectedHOTVRJets_min_pairwise_subjets_mass
+  #  xlabel: "HOTVR min pairwise subjets mass (GeV)"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/preselectedHOTVRJets_min_pairwise_subjets_mass/pt_diags.root
+  #- name: pt_diags
+  #  variable: preselectedHOTVRJets_mass
+  #  xlabel: "HOTVR jet mass (GeV)"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/preselectedHOTVRJets_mass/pt_diags.root
+  #- name: pt_diags
+  #  variable: preselectedHOTVRJets_nsubjets
+  #  xlabel: "Number of HOTVR subjets"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/preselectedHOTVRJets_nsubjets/pt_diags.root
+  #- name: pt_diags
+  #  variable: preselectedHOTVRJets_tau3_over_tau2
+  #  xlabel: "HOTVR jet $\\tau_3 / \\tau_2$ "
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/preselectedHOTVRJets_tau3_over_tau2/pt_diags.root
+  #- name: pt_diags
+  #  variable: leptonicW_pt
+  #  xlabel: "leptonic W $p_T$"
+  #  propername: "$p_T \\in [200, 1200]$"
+  #  prefitfile: HOTVRtagger_TopSF_2022/leptonicW_pt/pt_diags.root

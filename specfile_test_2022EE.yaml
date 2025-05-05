@@ -1,0 +1,622 @@
+year: 2022EE
+lumi: 27.0
+lumiunit: fb
+genweight: "xsecWeight*genWeight*puWeight*lepton_weight"
+treename: Events
+analysisname: HOTVRtagger_TopSF_2022EE_withlowess
+perfileweights:  
+  - name: xsecWeight
+    #value: 879100
+    value: 877.6 # (XsecGenAnalyzer)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 384500
+    value: 381.8 # (XsecGenAnalyzer)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 125500
+    value: 128.7 # (XsecGenAnalyzer)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 25780
+    value: 26.5 # (XsecGenAnalyzer)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 13420000
+    value: 1336000 # (XsecGenAnalyzer)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 2992000
+    value: 3046000 # (XsecGenAnalyzer)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+  - name: xsecWeight
+    value: 2278
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+  - name: xsecWeight
+    value: 39.49 # (AN-2024/019)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+  - name: xsecWeight
+    value: 86.46 # (AN-2024/019)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+  - name: xsecWeight
+    value: 250
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+  - name: xsecWeight
+    value: 97400 # AN-2023/137
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+  - name: xsecWeight
+    value: 403250 # AN-2023/137
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 4651.1
+    value: 35.99 # (AN-2023/184)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+  - name: xsecWeight
+    value: 1430
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+  - name: xsecWeight
+    #value: 4651.1
+    value: 36.05 # (AN-2023/184)
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+  - name: xsecWeight
+    value: 12980
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+  - name: xsecWeight
+    value: 52980
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+  - name: xsecWeight
+    value: 3445
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+  - name: xsecWeight
+    value: 12110
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+  - name: xsecWeight
+    value: 64481580
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+  - name: xsecWeight
+    value: 1190
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+  - name: xsecWeight
+    value: 3860
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+  - name: xsecWeight
+    value: 1650
+    files:
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+    - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+processes:
+  data:
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/MuonE_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/MuonF_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/MuonG_nominal.root
+  qcd:
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_nominal.root
+    unc_files:
+      JES:
+        up: 
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesUp.root
+        down: 
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jesDown.root
+      JER:
+        up: 
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerUp.root
+        down: 
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_jerDown.root
+      MET:
+        up: 
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metUp.root
+        down: 
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1000to1200_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1200to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-1500to2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-2000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-600to800_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/QCD-4Jets_HT-800to1000_TuneCP5_13p6TeV_madgraphMLM-pythia8_metDown.root
+  singletop:
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+    unc_files:
+      JES:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+      JER:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+      MET:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+  ttWZ:
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+    unc_files:
+      JES:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+      JER:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+      MET:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+  ttbar:
+    additional_weights: "topptWeight"
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+    unc_files:
+      JES:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+      JER:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+      MET:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+  wjets:
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+    unc_files:
+      JES:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+      JER:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+      MET:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WtoLNu-2Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+  diboson:
+    nominal_files:
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_nominal.root
+      - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_nominal.root
+    unc_files:
+      JES:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jesUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jesDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jesDown.root
+      JER:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jerUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_jerDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_jerDown.root
+      MET:
+        up:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metUp.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_metUp.root
+        down:
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WWtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoL3Nu-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/WZtoLNu2Q-1Jets-4FS_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto2L2Q-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_metDown.root
+          - /Users/top/Documents/HOTVR_nanoaod/2022EE/ZZto4L_TuneCP5_13p6TeV_powheg-pythia8_metDown.root
+basecut: "(passmetfilters && passMuTrig && abs(fj_1_eta) < 2.4 && leptonicW_pt > 150)"
+categories:
+  topmatched:
+    processes:
+      - singletop
+      - ttWZ
+      - ttbar
+    cut: preselectedHOTVRJets_has_hadronicTop_topIsInside
+    colour: 2
+  wmatched:
+    processes:
+      - singletop
+      - ttWZ
+      - ttbar
+    cut: "( (preselectedHOTVRJets_has_hadronicW_fromTop_topIsInside || preselectedHOTVRJets_has_b_plus_quark_fromTop_topIsInside || preselectedHOTVRJets_has_hadronicW_not_fromTop || preselectedHOTVRJets_has_b_plus_quark_not_fromTop) && !(preselectedHOTVRJets_has_hadronicTop_topIsInside) )"
+    colour: 797
+  nonmatched:
+    processes:
+      - singletop
+      - ttWZ
+      - ttbar
+    cut: "( !(preselectedHOTVRJets_has_hadronicW_fromTop_topIsInside || preselectedHOTVRJets_has_b_plus_quark_fromTop_topIsInside || preselectedHOTVRJets_has_hadronicW_not_fromTop || preselectedHOTVRJets_has_b_plus_quark_not_fromTop) && !(preselectedHOTVRJets_has_hadronicTop_topIsInside) )"
+    colour: 867
+  other:
+    processes:
+      - qcd
+      - diboson
+      - wjets
+    cut: "1"
+    colour: 921
+tagger:
+  name: HOTVRtagger_bdt
+  varname: preselectedHOTVRJets_scoreBDT
+  cut: 0.5
+  #name: HOTVRtagger_cut
+  #varname: passedHOTVRCut
+  #cut: 0.5
+distribution:
+  #mass_variable: fj_1_rawmass
+  #mass_range: [50, 220]
+  variables:
+  - variable: fj_1_rawmass
+    range: [50, 220]
+    bins: 17
+  #- variable: fj_1_pt
+  #  range: [200, 1200]
+  #  bins: 50
+  #- variable: muon_pt
+  #  range: [0, 500]
+  #  bins: 50
+  #- variable: preselectedHOTVRJets_scoreBDT
+  #  range: [0, 1]
+  #  bins: 50
+  #- variable: preselectedHOTVRJets_fractional_subjet_pt
+  #  range: [0, 1]
+  #  bins: 50
+  #- variable: preselectedHOTVRJets_min_pairwise_subjets_mass
+  #  range: [0, 1000]
+  #  bins: 50
+  #- variable: preselectedHOTVRJets_mass
+  #  range: [0, 500]
+  #  bins: 50
+  #- variable: preselectedHOTVRJets_nsubjets
+  #  range: [-0.5, 3.5]
+  #  bins: 4
+  #- variable: preselectedHOTVRJets_tau3_over_tau2
+  #  range: [0, 1.5]
+  #  bins: 75
+  #- variable: leptonicW_pt
+  #  range: [0, 500]
+  #  bins: 50
+  #mass_variable: fj_1_pt
+  #mass_range: [200, 1200]
+  #mass_bins: 50
+  event_categories:
+  - name: 300to400
+    rule: "(fj_1_pt >= 300) && (fj_1_pt < 400)"
+  - name: 400to480
+    rule: "(fj_1_pt >= 400) && (fj_1_pt < 480)"
+  - name: 480to600
+    rule: "(fj_1_pt >= 480) && (fj_1_pt < 600)"
+  - name: 600to1200
+    rule: "(fj_1_pt >= 600) && (fj_1_pt < 1200)"
+  #- name: pt_diags
+  #  rule: "(fj_1_pt >= 200) && (fj_1_pt < 1200)"
+uncertainties:
+  lumi:
+    mode: "lnN"
+    size: 1.014
+  topmatched_xsec:
+    mode: "lnN"
+    category: topmatched
+    size: 1.05
+  wmatched_xsec:
+    mode: "lnN"
+    category: wmatched
+    size: 1.05
+  nonmatched_xsec:
+    mode: "lnN"
+    category: nonmatched
+    size: 1.05
+  other_xsec:
+    mode: "lnN"
+    category: other
+    size: 2.00
+  pu:
+    mode: "factor"
+    up: "puWeightUp/puWeight"
+    down: "puWeightDown/puWeight"
+  JES:
+    mode: "file"
+    lowess:
+      symmetrize: true
+      limit: 0.5
+  JER:
+    mode: "file"
+    lowess:
+      symmetrize: true
+      limit: 0.5
+  MET:
+    mode: "file"
+  isr:
+    mode: "factor"
+    up: "PSWeight[0]"
+    down: "PSWeight[2]"
+  fsr:
+    mode: "factor"
+    up: "PSWeight[1]"
+    down: "PSWeight[3]"
+  lhescalemuf:
+    mode: "factor"
+    up: "(LHEScaleWeight[5]*LHEScaleWeightNorm[5])/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"
+    down: "(LHEScaleWeight[3]*LHEScaleWeightNorm[3])/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"
+  lhescalemur:
+    mode: "factor"
+    up: "(LHEScaleWeight[7]*LHEScaleWeightNorm[7])/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"
+    down: "LHEScaleWeight[1]*LHEScaleWeightNorm[1]/(LHEScaleWeight[4]*LHEScaleWeightNorm[4])"

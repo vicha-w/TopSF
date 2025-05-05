@@ -38,7 +38,7 @@ args = parser.parse_args()
 with open(args.yamlpath, "r") as yamlfile:
     yaml_spec = yaml.safe_load(yamlfile)
 
-def plot_prefit(array_mc, array_mc_error, array_mc_sum, array_data, array_data_err, histbins, legendtitle, filename):
+def plot_prefit(array_mc, array_mc_error, array_mc_sum, array_data, array_data_err, histbins, legendtitle, filename, xlabel=yaml_spec["xlabel"]):
     fig = plt.figure(figsize=(12, 12), facecolor="white")
     main_ax = plt.subplot2grid((5, 1), (0, 0), rowspan=4)
     ratio_ax = plt.subplot2grid((5, 1), (4, 0))
@@ -100,19 +100,51 @@ def plot_prefit(array_mc, array_mc_error, array_mc_sum, array_data, array_data_e
     ratio_ax.set_xlim((min(histbins), max(histbins)))
     ratio_ax.set_ylim((0.75, 1.25))
     ratio_ax.set_yticks((0.75, 1, 1.25))
-    ratio_ax.set_xlabel(yaml_spec["xlabel"])
+    ratio_ax.set_xlabel(xlabel)
     ratio_ax.set_ylabel("Data/MC")
     
     hep.cms.label(
         llabel="Preliminary",
         lumi=yaml_spec["lumi"],
         ax=main_ax,
+        com=yaml_spec["com"] if "com" in yaml_spec.keys() else 13
     )
     
     fig.savefig(filename + ".png", bbox_inches="tight")
     fig.savefig(filename + ".pdf", bbox_inches="tight")
 
-def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, array_prefit_mc_sum_error, array_postfit_mc, array_postfit_mc_error, array_postfit_mc_sum, array_postfit_mc_sum_error, array_data, array_data_err, histbins, legendtitle, filename):
+def plot_prefit_root(hist_mc, hist_mc_sum, hist_data, legendtitle, filename):
+    canvas = pyr.TCanvas(filename, legendtitle, 1200, 1200)
+    pad_main = pyr.TPad(0, 0.2, 1, 1)
+    pad_main.SetBottomMargin(0.02)
+    pad_main.SetTopMargin(0.08)
+    pad_main.SetLeftMargin(0.15)
+    pad_main.SetRightMargin(0.05)
+    pad_ratio = pyr.TPad(0, 0, 1, 0.2)
+    pad_ratio.SetTopMargin(0.07)
+    pad_ratio.SetBottomMargin(0.3)
+    pad_ratio.SetLeftMargin(0.15)
+    pad_ratio.SetRightMargin(0.05)
+
+    pad_main.Draw()
+    pad_ratio.Draw()
+
+    pad_main.cd()
+
+    hist_mc_stack = pyr.THStack("stack")
+    legend_obj = pyr.TLegend()
+    legend_obj.SetHeader(legendtitle, "C")
+    for category, category_config in yaml_spec["categories"].items():
+        hist_mc[category].SetFillColor(category_config["color"])
+        hist_mc_stack.Add(hist_mc[category])
+        legend_obj.AddEntry(hist_mc[category], category_config["propername"])
+    hist_mc_stack.Draw()
+    hist_data.SetMarkerColor("#000000")
+    hist_data.Draw("SAME")
+    legend_obj.AddEntry(hist_data, "Data")
+    
+
+def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, array_prefit_mc_sum_error, array_postfit_mc, array_postfit_mc_error, array_postfit_mc_sum, array_postfit_mc_sum_error, array_data, array_data_err, histbins, legendtitle, filename, xlabel=yaml_spec["xlabel"]):
     fig = plt.figure(figsize=(12, 12), facecolor="white")
     main_ax = plt.subplot2grid((5, 1), (0, 0), rowspan=4)
     ratio_ax = plt.subplot2grid((5, 1), (4, 0))
@@ -244,13 +276,14 @@ def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, ar
     ratio_ax.set_xlim((min(histbins), max(histbins)))
     ratio_ax.set_ylim((0.75, 1.25))
     ratio_ax.set_yticks((0.75, 1, 1.25))
-    ratio_ax.set_xlabel(yaml_spec["xlabel"])
+    ratio_ax.set_xlabel(xlabel)
     ratio_ax.set_ylabel("Data/MC")
     
     hep.cms.label(
         llabel="Preliminary",
         lumi=yaml_spec["lumi"],
         ax=main_ax,
+        com=yaml_spec["com"] if "com" in yaml_spec.keys() else 13
     )
     
     fig.savefig(filename + ".png", bbox_inches="tight")
@@ -258,19 +291,22 @@ def plot_postfit(array_prefit_mc, array_prefit_mc_error, array_prefit_mc_sum, ar
 
 for eventcat in yaml_spec["eventcats"]:
     eventcat_name = eventcat["name"]
+    eventcat_variable = eventcat["variable"]
     if "propername" in eventcat.keys(): ptrange_propername = eventcat["propername"]
     else: ptrange_propername = eventcat_name
+    if "xlabel" in eventcat.keys(): eventcat_xlabel = eventcat["xlabel"]
+    else: eventcat_xlabel = yaml_spec["xlabel"]
     prefitfile  = pyr.TFile(eventcat["prefitfile"])
     
-    hist_prefit_data_pass = prefitfile.Get(f"data_{eventcat_name}_pass")
-    hist_prefit_data_fail = prefitfile.Get(f"data_{eventcat_name}_fail")
+    hist_prefit_data_pass = prefitfile.Get(f"data_{eventcat_variable}_{eventcat_name}_pass")
+    hist_prefit_data_fail = prefitfile.Get(f"data_{eventcat_variable}_{eventcat_name}_fail")
     hist_prefit_mc_pass = {}
     hist_prefit_mc_fail = {}
     for category in yaml_spec["categories"].keys():
-        hist_prefit_mc_pass[category] = prefitfile.Get(f"{category}_{eventcat_name}_pass_nominal")
-        hist_prefit_mc_fail[category] = prefitfile.Get(f"{category}_{eventcat_name}_fail_nominal")
-    hist_prefit_mc_pass_sum = hist_prefit_mc_pass[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{eventcat_name}_pass_nominal")
-    hist_prefit_mc_fail_sum = hist_prefit_mc_fail[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{eventcat_name}_fail_nominal")
+        hist_prefit_mc_pass[category] = prefitfile.Get(f"{category}_{eventcat_variable}_{eventcat_name}_pass_nominal")
+        hist_prefit_mc_fail[category] = prefitfile.Get(f"{category}_{eventcat_variable}_{eventcat_name}_fail_nominal")
+    hist_prefit_mc_pass_sum = hist_prefit_mc_pass[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{eventcat_variable}_{eventcat_name}_pass_nominal")
+    hist_prefit_mc_fail_sum = hist_prefit_mc_fail[list(yaml_spec["categories"].keys())[0]].Clone(f"total_{eventcat_variable}_{eventcat_name}_fail_nominal")
     hist_prefit_mc_pass_sum.Reset("ICES")
     hist_prefit_mc_fail_sum.Reset("ICES")
     for category in yaml_spec["categories"].keys():
@@ -300,7 +336,8 @@ for eventcat in yaml_spec["eventcats"]:
         array_prefit_data_pass_err, 
         histbins_prefit_pass, 
         ptrange_propername + ", pass", 
-        f"{yaml_spec['savedir']}/prefit_pass_{eventcat_name}"
+        f"{yaml_spec['savedir']}/{eventcat_variable}/prefit_pass_{eventcat_name}",
+        xlabel = eventcat_xlabel
     )
     plot_prefit(
         array_prefit_mc_fail, 
@@ -310,7 +347,8 @@ for eventcat in yaml_spec["eventcats"]:
         array_prefit_data_fail_err, 
         histbins_prefit_fail, 
         ptrange_propername + ", fail", 
-        f"{yaml_spec['savedir']}/prefit_fail_{eventcat_name}"
+        f"{yaml_spec['savedir']}/{eventcat_variable}/prefit_fail_{eventcat_name}",
+        xlabel = eventcat_xlabel
     )
     
     if "postfitfile" not in eventcat.keys(): continue
@@ -369,7 +407,8 @@ for eventcat in yaml_spec["eventcats"]:
         array_postfit_data_pass_err, 
         histbins_prefit_pass,
         ptrange_propername + ", pass", 
-        f"{yaml_spec['savedir']}/postfit_pass_{eventcat_name}"
+        f"{yaml_spec['savedir']}/{eventcat_variable}/postfit_pass_{eventcat_name}",
+        xlabel = eventcat_xlabel
     )
     plot_postfit(
         array_postfit_mc_fail_prefit, 
@@ -384,5 +423,6 @@ for eventcat in yaml_spec["eventcats"]:
         array_postfit_data_fail_err, 
         histbins_prefit_fail,
         ptrange_propername + ", fail", 
-        f"{yaml_spec['savedir']}/postfit_fail_{eventcat_name}"
+        f"{yaml_spec['savedir']}/{eventcat_variable}/postfit_fail_{eventcat_name}",
+        xlabel = eventcat_xlabel
     )
