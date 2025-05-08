@@ -491,28 +491,24 @@ categories:
       - ttWZ
       - ttbar
     cut: preselectedHOTVRJets_has_hadronicTop_topIsInside
-    colour: 2
   wmatched:
     processes:
       - singletop
       - ttWZ
       - ttbar
     cut: "( (preselectedHOTVRJets_has_hadronicW_fromTop_topIsInside || preselectedHOTVRJets_has_b_plus_quark_fromTop_topIsInside || preselectedHOTVRJets_has_hadronicW_not_fromTop || preselectedHOTVRJets_has_b_plus_quark_not_fromTop) && !(preselectedHOTVRJets_has_hadronicTop_topIsInside) )"
-    colour: 797
   nonmatched:
     processes:
       - singletop
       - ttWZ
       - ttbar
     cut: "( !(preselectedHOTVRJets_has_hadronicW_fromTop_topIsInside || preselectedHOTVRJets_has_b_plus_quark_fromTop_topIsInside || preselectedHOTVRJets_has_hadronicW_not_fromTop || preselectedHOTVRJets_has_b_plus_quark_not_fromTop) && !(preselectedHOTVRJets_has_hadronicTop_topIsInside) )"
-    colour: 867
   other:
     processes:
       - qcd
       - diboson
       - wjets
     cut: "1"
-    colour: 921
 tagger:
   name: HOTVRtagger_bdt
   varname: preselectedHOTVRJets_scoreBDT
